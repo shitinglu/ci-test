@@ -1,0 +1,8 @@
+# 使用那种语言
+language: node_js
+# 使用的node版本
+node_js:
+  - 14
+#是否启用npm包缓存
+cache:
+  npm: false
