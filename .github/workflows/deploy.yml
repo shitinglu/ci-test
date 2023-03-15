@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v3
     - run: mkdir test
     - run: |
-        cd test-folder
+        cd test
         touch a.txt
         echo "hello world" > a.txt
         cat a.txt 
