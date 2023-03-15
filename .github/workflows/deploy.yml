@@ -18,16 +18,16 @@ jobs:
     steps:
       - uses:actions/checkout@v3
 
-      - name:mkdir #创建文件夹;
+      # - name:mkdir #创建文件夹;
       - run:mkdir test-folder
 
-      - name:create a file #创建一个文件
+      # - name:create a file #创建一个文件
       - run:|
           cd test-folder
           touch a.txt
           echo "hello world" > a.txt
           cat a.txt 
 
-      - name:delete a file #删除文件
+      # - name:delete a file #删除文件
       - run: rm -rf a.txt
 
