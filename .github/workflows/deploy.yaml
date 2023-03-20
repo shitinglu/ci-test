@@ -8,7 +8,7 @@ on:
       - '.github/workflows/*'
       - 'src/**'
       - 'bin/*'
-      - 'package.json' 
+      - 'package.json2' 
 
 jobs:
   build:
