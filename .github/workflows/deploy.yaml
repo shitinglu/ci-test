@@ -8,7 +8,7 @@ on:
       - '.github/workflows/*'
       - 'src/**'
       - 'bin/*'
-      - 'package.json2' 
+      - 'package.json' 
 
 jobs:
   build:
@@ -17,12 +17,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: mkdir # 设置 id_rsa
-      run: mkdir test
-    - name: print ras # 设置 id_rsa
+
+    - name: set id_rsa # 设置 id_rsa
       run: |
-        echo "start"
-        echo "${{secrets.MT_KEY}}"
-        echo "end"
-    - name: remove file # 设置 id_rsa
-      run: rm -rf a.txt
+        mkdir -p ~/.ssh/
+        echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan 101.200.36.103 >> ~/.ssh/known_hosts
+    - name: deploy # 自动发布
+      run: |
+        ssh root@101.200.36.103 "
+          # 注意：服务器已经 git clone 代码到 /root/www/imooc-320-server 目录
+          cd /root/www/imooc-320-server;
+          git checkout . ;
+          git checkout main;
+          git pull origin main; # 重新下载最新的代码
+          # 重启服务
+          npm install;
+          npm run prd;
+        "
+    - name: delete id_rsa # 删除 id_rsa
+      run: rm -rf ~/.ssh/id_rsa
