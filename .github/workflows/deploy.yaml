@@ -19,4 +19,11 @@ jobs:
     - uses: actions/checkout@v3
     - name: mkdir # 设置 id_rsa
       run: mkdir test
-
+    - name: create file # 设置 id_rsa
+      run: |
+        cd test
+        touch a.txt
+        echo "hello world" > a.txt
+        cat a.txt 
+    - name: remove file # 设置 id_rsa
+      run: rm -rf a.txt
