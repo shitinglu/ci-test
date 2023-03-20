@@ -3,26 +3,18 @@ name: deploy-test
 on:
   push:
     branches: [ "main" ]
-  paths:
-    - '.github/workflows/*'
-    - 'src/**'
-    - 'bin/*'
-    - 'package.json'
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3 #第三的 action
-    - name: mkdir
-      run: mkdir test
-    - name: run test
-      run: |
+    - uses: actions/checkout@v3
+    - run: mkdir test
+    - run: |
         cd test
         touch a.txt
         echo "hello world" > a.txt
         cat a.txt 
-
-    - name: rm test
-      run: rm -rf a.txt
+    - run: rm -rf a.txt
