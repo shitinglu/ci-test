@@ -3,7 +3,12 @@ name: deploy-test
 on:
   push:
     branches: 
-      - "main" 
+      - "main"
+    paths:
+      - '.github/workflows/*'
+      - 'src/**'
+      - 'bin/*'
+      - 'package.json' 
 
 jobs:
   build:
