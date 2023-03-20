@@ -21,7 +21,7 @@ jobs:
     - name: set id_rsa # 设置 id_rsa
       run: |
         mkdir -p ~/.ssh/
-        echo "${{secrets.MY_ID_RSA}}" > ~/.ssh/id_rsa
+        echo "${{secrets.MT_KEY}}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan 101.200.36.103 >> ~/.ssh/known_hosts
     - name: deploy # 自动发布
